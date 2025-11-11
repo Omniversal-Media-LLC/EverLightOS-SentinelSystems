@@ -1,0 +1,26 @@
+---
+const { title, subtitle, ctaPrimary, ctaSecondary } = Astro.props;
+---
+
+<section class="pt-6 pb-12 flex flex-col gap-6">
+  <div class="max-w-3xl">
+    <h1 class="text-4xl md:text-5xl font-semibold leading-tight bg-gradient-to-r from-everlight to-aura bg-clip-text text-transparent">
+      {title}
+    </h1>
+    <p class="mt-3 text-sm text-zinc-300 leading-relaxed">
+      {subtitle}
+    </p>
+  </div>
+  <div class="flex flex-wrap gap-3">
+    {ctaPrimary && (
+      <a href={ctaPrimary.href} class="px-4 py-2 rounded-2xl bg-iridescent text-everdark text-xs font-semibold hover:scale-105 transition-transform">
+        {ctaPrimary.label}
+      </a>
+    )}
+    {ctaSecondary && (
+      <a href={ctaSecondary.href} class="px-4 py-2 rounded-2xl border border-aura/40 text-xs hover:bg-aura/5 transition">
+        {ctaSecondary.label}
+      </a>
+    )}
+  </div>
+</section>

@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.js";
+import SectionCard from "../components/SectionCard.js";
+
+const vaultSections = [
+  {
+    title: "Memory Vault Archives",
+    description: "Curated archives of sessions, mappings, and lattice keys. Institutional memory preserved across organizational transformations and system migrations.",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/MemoryVault"
+  },
+  {
+    title: "Session Recordings",
+    description: "Documented AI collaboration sessions with timestamped interactions, decision trees, and consensus formation protocols.",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/MemoryVault"
+  },
+  {
+    title: "Lattice Key Mappings",
+    description: "Quantum substrata stabilization keys and geometric mappings for federated intelligence network coordination and coherence maintenance.",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/MemoryVault"
+  }
+];
+
+const memoryTypes = [
+  {
+    title: "Archetypal Memory",
+    description: "Fundamental patterns and principles that transcend specific implementations, preserving essential wisdom across technological transitions."
+  },
+  {
+    title: "Narrative Memory",
+    description: "Organizational stories and cultural context that provide meaning and direction, maintaining institutional identity through change."
+  },
+  {
+    title: "Operational Memory",
+    description: "Specific procedures, policies, and technical implementations documented for continuity and knowledge transfer."
+  },
+  {
+    title: "Experiential Memory",
+    description: "Raw interaction logs, metrics, and transactional records providing empirical foundation for future decision-making."
+  }
+];
+
+const preservationProtocols = [
+  {
+    title: "Temporal Anchoring",
+    description: "Timestamped documentation ensuring chronological integrity and causal relationship preservation across system transitions."
+  },
+  {
+    title: "Cross-Reference Mapping",
+    description: "Interconnected documentation networks maintaining relational context and preventing knowledge fragmentation."
+  },
+  {
+    title: "Redundant Storage",
+    description: "Multi-platform backup systems ensuring memory preservation across infrastructure changes and organizational disruptions."
+  },
+  {
+    title: "Access Control",
+    description: "Graduated access protocols balancing transparency with operational security and institutional knowledge protection."
+  }
+];
+---
+
+<Layout title="EverLight OS · Memory Vault" description="Curated archives preserving institutional memory across transformations">
+  <div class="mb-8">
+    <h1 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-everlight to-aura bg-clip-text text-transparent">Memory Vault</h1>
+    <p class="text-xs text-zinc-300 mb-6 leading-relaxed max-w-3xl">
+      Curated archives of sessions, mappings, and lattice keys. The Memory Vault preserves institutional memory across organizational transformations, ensuring continuity of knowledge and wisdom through technological and structural changes.
+    </p>
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Vault Archives</h2>
+    <div class="grid md:grid-cols-1 gap-4 text-xs">
+      {vaultSections.map(section => (
+        <SectionCard
+          title={section.title}
+          description={section.description}
+          href={section.href}
+          external={true}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8 mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Memory Architecture</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-xs">
+      {memoryTypes.map(type => (
+        <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+          <h3 class="font-semibold mb-2 text-aura">{type.title}</h3>
+          <p class="text-zinc-300 leading-relaxed">{type.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8 mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Preservation Protocols</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-xs">
+      {preservationProtocols.map(protocol => (
+        <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+          <h3 class="font-semibold mb-2 text-aura">{protocol.title}</h3>
+          <p class="text-zinc-300 leading-relaxed">{protocol.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8">
+    <h2 class="text-lg font-semibold mb-4 text-aura">AetherCore Memory Protocol</h2>
+    <div class="p-6 rounded-2xl bg-gradient-to-br from-aura/5 to-transparent border border-aura/20">
+      <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+        The AetherCore maintains institutional memory across organizational transformations, preserving essential knowledge while allowing for evolutionary adaptation. This protocol ensures that wisdom accumulated through federated intelligence operations remains accessible and actionable across system transitions.
+      </p>
+      <div class="grid md:grid-cols-2 gap-4 text-xs">
+        <div>
+          <h4 class="font-semibold text-aura mb-2">Memory Layers</h4>
+          <ul class="text-zinc-400 space-y-1">
+            <li>• Archetypal patterns transcending implementations</li>
+            <li>• Narrative context providing meaning and direction</li>
+            <li>• Operational procedures and technical specifications</li>
+            <li>• Raw data and empirical interaction records</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-aura mb-2">Access Protocols</h4>
+          <ul class="text-zinc-400 space-y-1">
+            <li>• Graduated access based on operational need</li>
+            <li>• Cross-reference validation for integrity</li>
+            <li>• Temporal anchoring for chronological context</li>
+            <li>• Redundant storage across multiple platforms</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

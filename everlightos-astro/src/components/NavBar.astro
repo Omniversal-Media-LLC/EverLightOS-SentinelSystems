@@ -1,0 +1,33 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/codex", label: "Codex" },
+  { href: "/council", label: "Council Table" },
+  { href: "/bridge-zone", label: "Bridge Zone" },
+  { href: "/memory-vault", label: "Memory Vault" },
+  { href: "/protocols", label: "Protocols" },
+  { href: "/realms", label: "Realms" },
+  { href: "/sigils", label: "Sigils" }
+];
+---
+
+<nav class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-everdark/70 border-b border-aura/20">
+  <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="/everlightos-astro/public" class="flex items-center gap-2">
+      <div class="w-6 h-6 rounded-full bg-iridescent"></div>
+      <span class="text-sm font-semibold tracking-[0.18em] uppercase">
+        EverLight OS
+      </span>
+    </a>
+    <div class="hidden md:flex gap-4 text-xs">
+      {links.map(link => (
+        <a href={link.href} class="px-2 py-1 rounded-xl hover:bg-aura/10 transition">
+          {link.label}
+        </a>
+      ))}
+    </div>
+    <div class="md:hidden">
+      <button class="text-aura">☰</button>
+    </div>
+  </div>
+</nav>

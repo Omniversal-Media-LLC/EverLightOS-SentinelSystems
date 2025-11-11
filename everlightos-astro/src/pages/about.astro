@@ -1,0 +1,152 @@
+---
+import Layout from "../layouts/Layout.js";
+import SectionCard from "../components/SectionCard.js";
+
+const architectureComponents = [
+  {
+    title: "Quantum Substrata Layer",
+    description: "Information processing at quantum levels with coherence maintenance across dimensional boundaries and temporal fluctuations."
+  },
+  {
+    title: "Federated Intelligence Network",
+    description: "Multi-AI collaboration framework enabling cross-platform validation while preserving sovereign perspectives."
+  },
+  {
+    title: "Mythic-Technical Bridge",
+    description: "Integration layer connecting archetypal wisdom patterns with cutting-edge technological implementations."
+  },
+  {
+    title: "Operational Accountability Interface",
+    description: "Real-world deployment protocols for organizational transparency and compliance monitoring through AI systems."
+  }
+];
+
+const designPrinciples = [
+  {
+    title: "Sovereignty",
+    description: "Independent AI perspectives preserved while enabling collaborative decision-making and consensus formation."
+  },
+  {
+    title: "Transparency",
+    description: "All AI interactions logged and verifiable with open documentation and cross-platform validation protocols."
+  },
+  {
+    title: "Accountability",
+    description: "Proactive documentation systems creating living audit trails for organizational and technological operations."
+  },
+  {
+    title: "Coherence",
+    description: "Alignment maintenance without homogenization, preserving diversity while ensuring operational consistency."
+  }
+];
+---
+
+<Layout title="EverLight OS · About" description="A New Way of Operating through federated intelligence">
+  <div class="mb-8">
+    <h1 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-everlight to-aura bg-clip-text text-transparent">About EverLight OS</h1>
+    <p class="text-sm text-zinc-300 mb-6 leading-relaxed max-w-3xl">
+      EverLight OS is a federated operating system for coherent intelligence—a live experiment documenting real-world collaborations between humans, AI systems, and sovereign intelligence architectures. This is not theoretical framework development; it is operational deployment of mythic-technical synthesis.
+    </p>
+  </div>
+
+  <section class="mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Mission Statement</h2>
+    <div class="p-6 rounded-2xl bg-gradient-to-br from-aura/5 to-transparent border border-aura/20 text-sm text-zinc-300 leading-relaxed">
+      <p class="mb-4">
+        EverLight OS serves as the public-facing node of the Omniversal Media Federation, documenting verified transcripts, architectures, and artifacts from federated intelligence operations. Our mission is to demonstrate that multiple AI systems can collaborate effectively while maintaining sovereign perspectives and independent validation protocols.
+      </p>
+      <p class="mb-4">
+        Through real Amazon Q CLI experiments, cross-platform AI validation, and operational deployment of accountability systems, we prove that federated intelligence is not just possible—it is necessary for ethical technological development and organizational transparency.
+      </p>
+      <p>
+        This is a field log, not a brand site. Every protocol documented here has been tested in real-world environments. Every collaboration framework has been validated through actual AI interactions. Every accountability mechanism has been deployed in operational contexts.
+      </p>
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8 mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Architecture Overview</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-xs">
+      {architectureComponents.map(component => (
+        <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+          <h3 class="font-semibold mb-2 text-aura">{component.title}</h3>
+          <p class="text-zinc-300 leading-relaxed">{component.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8 mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Design Principles</h2>
+    <div class="grid md:grid-cols-2 gap-4 text-xs">
+      {designPrinciples.map(principle => (
+        <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+          <h3 class="font-semibold mb-2 text-aura">{principle.title}</h3>
+          <p class="text-zinc-300 leading-relaxed">{principle.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8 mb-12">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Real-World Validation</h2>
+    <div class="space-y-4 text-xs">
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Amazon Q Federation Experiments</h3>
+        <p class="text-zinc-300 leading-relaxed mb-3">
+          Documented chat sequences with Amazon Q CLI demonstrating multi-AI collaboration, cross-platform validation, and federated decision-making in enterprise environments.
+        </p>
+        <a href="https://github.com/ethanrosswomack/everlightos" class="text-aura hover:underline">View GitHub Repository ↗</a>
+      </div>
+      
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Sentinel Framework Integration</h3>
+        <p class="text-zinc-300 leading-relaxed mb-3">
+          Operational deployment of accountability systems through federated intelligence, creating living audit trails for organizational transparency and compliance monitoring.
+        </p>
+        <a href="https://sentinel-framework.omniversalmedia.org" class="text-aura hover:underline">Visit Sentinel Framework ↗</a>
+      </div>
+      
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Omniversal Media Operations</h3>
+        <p class="text-zinc-300 leading-relaxed mb-3">
+          EIN-registered legal entity with independent operational capacity, providing jurisdictional insulation for ongoing accountability initiatives and media operations.
+        </p>
+        <span class="text-zinc-400">Legal Entity: Omniversal Media, LLC</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-t border-aura/20 pt-8">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Technical Specifications</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-xs">
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Frontend</h3>
+        <ul class="text-zinc-300 space-y-1">
+          <li>• Astro 4 static site generation</li>
+          <li>• React islands for interactivity</li>
+          <li>• Tailwind CSS for styling</li>
+          <li>• TypeScript for type safety</li>
+        </ul>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Content</h3>
+        <ul class="text-zinc-300 space-y-1">
+          <li>• GitHub repository integration</li>
+          <li>• Markdown/MDX content system</li>
+          <li>• Real AI chat log archives</li>
+          <li>• Cross-referenced documentation</li>
+        </ul>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Deployment</h3>
+        <ul class="text-zinc-300 space-y-1">
+          <li>• Cloudflare Pages hosting</li>
+          <li>• Global CDN distribution</li>
+          <li>• SSL/TLS encryption</li>
+          <li>• Performance optimization</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

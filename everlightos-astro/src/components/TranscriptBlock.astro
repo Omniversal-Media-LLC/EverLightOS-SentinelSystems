@@ -1,0 +1,19 @@
+---
+// src/components/TranscriptBlock.astro
+const { title = "Federation Evidence", entries = [] } = Astro.props;
+---
+
+<section class="p-4 rounded-2xl bg-black/50 border border-aura/25 text-[0.65rem] space-y-2 font-mono">
+  <div class="text-zinc-300 font-semibold text-[0.7rem] mb-1">
+    {title}
+  </div>
+  {entries.length === 0 && (
+    <p class="text-zinc-500">No transcript entries provided.</p>
+  )}
+  {entries.map((line) => (
+    <div class="flex gap-2">
+      <span class="text-aura/80 shrink-0">{line.speaker}:</span>
+      <span class="text-zinc-200 whitespace-pre-wrap">{line.text}</span>
+    </div>
+  ))}
+</section>

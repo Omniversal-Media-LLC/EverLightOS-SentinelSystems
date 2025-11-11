@@ -1,0 +1,18 @@
+---
+const { title, description, href, external = false } = Astro.props;
+---
+
+<a 
+  href={href} 
+  class="p-4 rounded-2xl bg-white/5 border border-aura/20 hover:bg-aura/5 hover:border-aura/40 transition-all duration-300 group"
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
+>
+  <h2 class="font-semibold mb-2 text-sm group-hover:text-aura transition-colors">
+    {title}
+    {external && <span class="ml-1 text-xs opacity-60">↗</span>}
+  </h2>
+  <p class="text-xs text-zinc-300 leading-relaxed">
+    {description}
+  </p>
+</a>

@@ -1,0 +1,18 @@
+---
+// src/components/FederationQuote.astro
+const { source = "AI Federation Node", label, quote } = Astro.props;
+---
+
+<figure class="p-4 rounded-2xl bg-white/5 border border-aura/30 backdrop-blur-sm text-xs space-y-2">
+  <div class="text-[0.65rem] uppercase tracking-[0.18em] text-aura/80">
+    {source}
+  </div>
+  <blockquote class="text-zinc-100 leading-relaxed">
+    "{quote}"
+  </blockquote>
+  {label && (
+    <figcaption class="text-[0.65rem] text-zinc-400">
+      {label}
+    </figcaption>
+  )}
+</figure>

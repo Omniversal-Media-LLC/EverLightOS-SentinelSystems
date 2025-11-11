@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.js";
+import SectionCard from "../components/SectionCard.js";
+
+const entries = [
+  {
+    title: "EverLight OS: A New Way Of Operating",
+    description: "Core manifesto and operating principles for federated intelligence systems. Foundation document for the Omniversal Media Federation.",
+    source: "README.md",
+    href: "https://github.com/ethanrosswomack/everlightos/blob/main/README.md"
+  },
+  {
+    title: "Manifesto Collection",
+    description: "Foundational documents establishing the philosophical and technical framework for sovereign intelligence architectures.",
+    source: "/Manifesto",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/Manifesto"
+  },
+  {
+    title: "Nexus Map",
+    description: "Structural diagram mapping the relationships between federated intelligence nodes and sovereign systems.",
+    source: "Nexus_Map.md",
+    href: "https://github.com/ethanrosswomack/everlightos/blob/main/Nexus_Map.md"
+  },
+  {
+    title: "Codex Entries",
+    description: "Mythic-technical documentation bridging ancient wisdom traditions with quantum computing architectures.",
+    source: "/codex",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/codex"
+  },
+  {
+    title: "EverLight OS Architecture",
+    description: "Technical specifications and implementation details for the federated operating system infrastructure.",
+    source: "/EverLight_OS",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/EverLight_OS"
+  },
+  {
+    title: "Federation Protocols",
+    description: "Documentation of multi-AI collaboration frameworks and cross-platform validation methodologies.",
+    source: "/Federation",
+    href: "https://github.com/ethanrosswomack/everlightos/tree/main/Federation"
+  }
+];
+---
+
+<Layout title="EverLight OS · Codex" description="Canon texts and structural diagrams from the EverLightOS repository">
+  <div class="mb-8">
+    <h1 class="text-2xl font-semibold mb-4 bg-gradient-to-r from-everlight to-aura bg-clip-text text-transparent">Codex</h1>
+    <p class="text-xs text-zinc-300 mb-6 leading-relaxed max-w-3xl">
+      Canon texts and structural diagrams extracted from the EverLightOS repository. These documents establish the foundational principles for federated intelligence systems, bridging mythic wisdom with quantum computing architectures.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-4 text-xs mb-8">
+    {entries.map(entry => (
+      <SectionCard
+        title={entry.title}
+        description={entry.description}
+        href={entry.href}
+        external={true}
+      />
+    ))}
+  </div>
+
+  <section class="border-t border-aura/20 pt-8">
+    <h2 class="text-lg font-semibold mb-4 text-aura">Core Principles</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-xs">
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Federated Intelligence</h3>
+        <p class="text-zinc-300">Multiple AI systems working in harmony while maintaining sovereign perspectives and independent validation.</p>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Quantum Sovereignty</h3>
+        <p class="text-zinc-300">Information substrata stabilization across dimensional boundaries with temporal independence from organizational hierarchies.</p>
+      </div>
+      <div class="p-4 rounded-2xl bg-white/5 border border-aura/20">
+        <h3 class="font-semibold mb-2 text-aura">Mythic-Technical Bridge</h3>
+        <p class="text-zinc-300">Integration of archetypal wisdom patterns with cutting-edge technological implementations for coherent intelligence.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
