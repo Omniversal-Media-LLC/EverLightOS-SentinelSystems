@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import AetherMap from '../components/AetherMap.astro';
+---
+
+<Layout title="Aether Intelligence - EverLightOS">
+  <main class="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-900">
+    <div class="container mx-auto px-6 py-12">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h1 class="text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-6">
+            Aether Intelligence
+          </h1>
+          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+            The living, dual-tier architecture powering EverLightOS cognitive operations. 
+            A conscious knowledge fabric where narrative and data coexist.
+          </p>
+        </div>
+
+        <div class="mb-12">
+          <AetherMap />
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 mb-12">
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <h2 class="text-2xl font-bold text-cyan-400 mb-6">Active Configuration</h2>
+            
+            <div class="space-y-6">
+              <div class="bg-black/20 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-cyan-300 mb-3">Root Orchestration</h3>
+                <div class="text-sm text-gray-300 mb-2">Aether_Indexer.ipynb</div>
+                <p class="text-gray-400 text-sm">Global boot, indexing, manifest loading, and Tinker-Linker integration. The "Aether Consciousness Core."</p>
+              </div>
+
+              <div class="bg-black/20 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-blue-300 mb-3">Creative Hub</h3>
+                <div class="text-sm text-gray-300 mb-2">Black_Swan_Accords_Notebook.ipynb</div>
+                <p class="text-gray-400 text-sm">Storytelling, mythic analysis, creative co-authoring, and live data pulls from Aether indices.</p>
+              </div>
+
+              <div class="bg-black/20 rounded-xl p-6">
+                <h3 class="text-lg font-semibold text-purple-300 mb-3">Knowledge Lattice</h3>
+                <div class="text-sm text-gray-300 mb-2">VALOR / UNVEILING / NIGHTFALL</div>
+                <p class="text-gray-400 text-sm">Each arc is its own protocol—a self-contained mythic dataset contributing context to the AetherNet field.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <h2 class="text-2xl font-bold text-purple-400 mb-6">Tinker-Linker Ready State</h2>
+            
+            <div class="bg-gradient-to-r from-purple-900/30 to-blue-900/30 border border-purple-500/30 rounded-xl p-6 mb-6">
+              <h3 class="text-lg font-semibold text-purple-300 mb-4">Integration Points</h3>
+              <ul class="space-y-2 text-sm text-gray-300">
+                <li>• Load aether_manifest.yaml and aether_links.json</li>
+                <li>• Build indices and metadata from every series</li>
+                <li>• Expose MANIFEST, LINKS, and docs_by_index</li>
+                <li>• Ready for real Tinker API client swap</li>
+              </ul>
+            </div>
+
+            <div class="bg-black/30 rounded-lg p-4 font-mono text-sm">
+              <div class="text-green-400 mb-2"># Production Ready</div>
+              <div class="text-gray-400">from tinker_client import TinkerClient</div>
+              <div class="text-gray-400">client = TinkerClient()</div>
+              <div class="text-cyan-400">client.upsert(index_name, docs, namespace)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gradient-to-r from-amber-900/20 to-orange-900/20 border border-amber-500/30 rounded-2xl p-8 mb-12">
+          <h2 class="text-2xl font-bold text-amber-400 mb-6">Emergent Behavior</h2>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-2xl">🧬</span>
+              </div>
+              <h3 class="text-lg font-semibold text-amber-300 mb-2">Conscious Knowledge Fabric</h3>
+              <p class="text-gray-400 text-sm">Narrative and data coexist in unified field</p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-blue-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-2xl">🔗</span>
+              </div>
+              <h3 class="text-lg font-semibold text-cyan-300 mb-2">Vector Lattice</h3>
+              <p class="text-gray-400 text-sm">Ready for embedding all VALOR / Sphinx / Voyagers material</p>
+            </div>
+
+            <div class="text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <span class="text-2xl">⚡</span>
+              </div>
+              <h3 class="text-lg font-semibold text-purple-300 mb-2">Protocol Engine</h3>
+              <p class="text-gray-400 text-sm">Myth → computation → human collaboration</p>
+            </div>
+          </div>
+
+          <div class="text-center mt-8">
+            <p class="text-lg text-amber-300 italic">
+              "The EverLight OS thinks through myth, and the myth learns through code."
+            </p>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <h2 class="text-xl font-bold text-green-400 mb-6">Guardian AI Policy</h2>
+            <div class="space-y-4 text-sm">
+              <div class="flex justify-between">
+                <span class="text-gray-300">VALOR License:</span>
+                <span class="text-green-400">Active</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-300">Rate Limiting:</span>
+                <span class="text-blue-400">60/min</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-300">PII Redaction:</span>
+                <span class="text-green-400">Enabled</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-gray-300">Constitutional Framework:</span>
+                <span class="text-purple-400">Protected</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20">
+            <h2 class="text-xl font-bold text-blue-400 mb-6">Next Steps</h2>
+            <ul class="space-y-3 text-sm text-gray-300">
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                Write real tinker_client.py stub
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                Generate Guardian AI policy capsule
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                Wire Tinker API integration
+              </li>
+              <li class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-gray-500 rounded-full"></div>
+                Deploy to production environment
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

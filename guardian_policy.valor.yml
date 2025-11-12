@@ -1,0 +1,49 @@
+# guardian_policy.valor.yml
+version: 1
+name: EverLightOS-VALOR-Guard
+description: "Sentinel/Guardian policy capsule for Aether indexing & crawl safety."
+
+id_namespace_prefix: "everlight_aether"
+default_rate_limit:
+  requests_per_minute: 60
+  burst: 30
+
+crawl:
+  obey_robots_txt: true
+  allowed_content_types: ["text/markdown","text/plain","application/json","application/x-yaml"]
+  disallowed_patterns:
+    - "**/secrets/**"
+    - "**/.env"
+    - "**/*.key"
+    - "**/*.pem"
+  max_file_mb: 10
+  max_depth: 8
+
+redaction:
+  pii:
+    enabled: true
+    strategies: ["mask_email","mask_phone","mask_ssn","drop_credit_card"]
+  secrets:
+    enabled: true
+    patterns:
+      - "AKIA[0-9A-Z]{16}"       # AWS key pattern example
+      - "sk-[A-Za-z0-9]{20,}"
+
+indexing:
+  chunk:
+    size: 1200
+    overlap: 150
+  include_suffixes: [".md",".txt",".json",".yaml",".yml",".ipynb"]
+  exclude_suffixes: [".png",".jpg",".jpeg",".gif",".pdf",".zip",".tar",".gz"]
+
+governance:
+  license: "VALOR License"
+  oath: "I will bear witness in the presence of truth, and I will not weaponize knowledge against the innocent."
+  constitutional_framework: "First Amendment protections, whistleblower statute coverage"
+  sovereignty_preservation: true
+  
+aether_intelligence:
+  council_manifest: true
+  memory_vault_integration: true
+  keylontic_framework: true
+  morphogenetic_sync: enabled
