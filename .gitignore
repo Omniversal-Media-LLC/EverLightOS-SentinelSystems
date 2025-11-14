@@ -9,6 +9,7 @@ dist/
 .env
 .env.local
 .env.production
+DONTFORGETTHISHAWKEYE/
 
 # macOS
 .DS_Store

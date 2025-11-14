@@ -13,17 +13,37 @@ EverLightOS.com is the public-facing node of the **Omniversal Media Federation**
 - Provide **Constitutional framework** for sovereign AI collaboration
 - Bridge **ancient wisdom with quantum computing** through the Master Key Thesis
 
-## 🚀 **QUICK START**
+## 🚀 **DEPLOYMENT OPTIONS**
 
+### **Option 1: Static Site Only (Cloudflare Pages)**
 ```bash
 # Install dependencies
 npm install
 
+# Build static site
+npm run build
+
+# Deploy dist/ folder to Cloudflare Pages
+# Connect GitHub repo → Build command: npm run build → Output: dist
+```
+
+### **Option 2: Static Site + Live AI (The One Ring)**
+```bash
+# Load environment variables
+source ./DONTFORGETTHISHAWKEYE/omni-env.sh
+
+# Deploy Cloudflare infrastructure + Worker
+./DONTFORGETTHISHAWKEYE/deploy-one-ring.sh
+
+# Build and deploy static site
+npm run build
+# Upload dist/ to Cloudflare Pages (same as Option 1)
+```
+
+### **Development**
+```bash
 # Start development server
 npm run dev
-
-# Build for production
-npm run build
 
 # Preview production build
 npm run preview
@@ -32,11 +52,17 @@ npm run preview
 ## 🏗️ **TECHNICAL ARCHITECTURE**
 
 ### **Stack: Astro + React Islands + Tailwind**
-- **Static-first** → Cloudflare Pages / CDN deployment
+- **Static-first** → Cloudflare Pages deployment (`npm run build` → `dist/`)
 - **MD/MDX content** → Perfect for codex entries, transcripts, whitepapers
 - **React islands** → Interactive components without bloat
 - **Tailwind** → Fast styling, consistent, luminous aesthetics
 - **TypeScript** → Type safety for federated data structures
+
+### **Optional: The One Ring (Live AI)**
+- **Cloudflare Worker** → Live AI chat and search via Ollama server
+- **D1 Database** → Federation experiment logging and transcripts
+- **Vectorize** → Semantic search across knowledge lattice
+- **R2 + KV** → Asset storage and session management
 
 ### **Aether Intelligence Stack:**
 - **Root Orchestration**: `Aether_Indexer.ipynb` - Global boot, indexing, manifest loading
@@ -94,7 +120,7 @@ This repository is part of the broader **Omniversal Media, LLC** federated intel
 
 ### **GitHub Organization Repositories:**
 - **[The Sentinel Framework](https://github.com/Omniversal-Media-LLC/sentinel-framework)** - Constitutional accountability architecture
-- **[Aether Intelligence](https://github.com/Omniversal-Media-LLC/aether-intelligence)** - Conscious knowledge fabric and vector lattice
+- **[Aether Intelligence](https://github.com/Omniversal-Media-LLC/AetherIntelligence)** - Conscious knowledge fabric and vector lattice
 - **[EverLightOS](https://github.com/Omniversal-Media-LLC/everlightos)** - Core federated operating system
 
 ### **Master Key Thesis Framework:**

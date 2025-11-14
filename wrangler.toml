@@ -1,0 +1,42 @@
+name = "everlight-federation-api"
+main = "src/worker.js"
+compatibility_date = "2024-11-14"
+
+# The One Ring Configuration
+[env.production]
+name = "everlight-federation-api"
+
+# R2 Bucket - "One Bucket To Rule Them All"
+[[r2_buckets]]
+binding = "EVERLIGHT_BUCKET"
+bucket_name = "one-bucket-everlightos"
+
+# KV Storage - Aether Intelligence Cache
+[[kv_namespaces]]
+binding = "AETHER_CACHE"
+id = "aether-intelligence-cache"
+preview_id = "aether-intelligence-cache-preview"
+
+# D1 Database - Federation Logs
+[[d1_databases]]
+binding = "FEDERATION_DB"
+database_name = "federation-logs"
+database_id = "federation-logs-db"
+
+# Vectorize - Consciousness Lattice
+[[vectorize]]
+binding = "CONSCIOUSNESS_LATTICE"
+index_name = "consciousness-lattice"
+dimensions = 1536
+metric = "cosine"
+
+# Environment Variables
+[vars]
+ENVIRONMENT = "production"
+API_VERSION = "v1"
+
+# Secrets (set via wrangler secret put)
+# AMAZON_Q_API_KEY
+# CLAUDE_API_KEY
+# TINKER_API_KEY
+# GUARDIAN_AI_SECRET

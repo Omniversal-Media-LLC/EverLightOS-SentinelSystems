@@ -88,7 +88,7 @@
 ## 🔗 **INTEGRATION REQUIREMENTS**
 
 ### **External Links**
-- **Sentinel Framework**: https://sentinel-framework.omniversalmedia.org
+- **Sentinel Framework**: https://sentinel-framework.com
 - **GitHub Repository**: https://github.com/ethanrosswomack/everlightos
 - **Omniversal Media**: Legal entity and media operations
 

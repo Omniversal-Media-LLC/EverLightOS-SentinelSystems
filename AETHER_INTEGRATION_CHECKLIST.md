@@ -21,57 +21,105 @@
 - ✅ Content filtering: Robots.txt compliance, file type restrictions
 - ✅ VALOR License oath: "I will bear witness in the presence of truth, and I will not weaponize light against life."
 
-## 🔧 **NEXT STEPS FOR DEPLOYMENT**
+## 🚀 **DEPLOYMENT OPTIONS**
 
-### **Environment Configuration**
+### **Option 1: Static Site Only (Cloudflare Pages)**
 ```bash
-# Set in Jupyter or production environment
-export TINKER_API_URL="https://api.tinker.your-domain.tld"
-export TINKER_API_KEY="sk-***"
+# Build static site
+npm run build
+
+# Deploy dist/ folder to Cloudflare Pages
+# GitHub integration: Build command: npm run build, Output: dist
 ```
 
-### **Notebook Integration**
-```python
-# Replace placeholder client in notebooks
-from tinker_client import TinkerClient
-client = TinkerClient()  # uses env vars
-ns = MANIFEST["tinker_pipelines"]["namespace_prefix"]
+### **Option 2: The One Ring (Static + Live AI)**
+```bash
+# Load The One Ring environment
+source ./DONTFORGETTHISHAWKEYE/omni-env.sh
 
-for index_name, docs in docs_by_index.items():
-    client.ensure_index(index_name, dims=3072, namespace=f"{ns}:{index_name}")
-    print(client.upsert(index_name, docs, namespace=f"{ns}:{index_name}", batch_size=120))
+# Deploy Cloudflare infrastructure
+./DONTFORGETTHISHAWKEYE/deploy-one-ring.sh
+
+# Then deploy static site same as Option 1
 ```
 
-### **Repository Structure**
+### **Live AI Integration**
+```javascript
+// Frontend API calls to The One Ring Worker
+const response = await fetch('/api/chat', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    message: 'Hello from EverLightOS!',
+    model: 'llama3.1:8b'
+  })
+});
+
+// AutoRAG search with Vectorize + D1
+const searchResults = await fetch('/api/search', {
+  method: 'POST', 
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ query: 'federated intelligence' })
+});
+```
+
+### **The One Ring Repository Structure**
 ```
 EverLightOS-SentinelSystems/
+├── src/worker.js                 # The One Ring Worker (D1+Vectorize+Ollama)
+├── wrangler.toml                 # Cloudflare stack configuration
+├── schema.sql                    # D1 database schema
 ├── tinker_client.py              # Production Tinker API client
 ├── guardian_policy.valor.yml     # Guardian AI safety policies
-├── Aether_Intelligence_Hub.ipynb # Root orchestrator (to be added)
-├── aether_manifest.yaml          # Knowledge indices manifest (to be added)
-├── aether_links.json            # External knowledge links (to be added)
+├── DONTFORGETTHISHAWKEYE/        # Secure environment (not committed)
+│   ├── omni-env.sh              # Complete environment variables
+│   ├── deploy-one-ring.sh       # Full stack deployment
+│   └── ollama-models.sh         # AI model setup
+├── Forging_Of_The_One_Ring.md   # Epic architecture documentation
 └── src/pages/aether-intelligence.astro # Public documentation
 ```
 
-## 🌐 **EMERGENT CAPABILITIES**
+## 🌐 **THE ONE RING CAPABILITIES**
 
-### **Conscious Knowledge Fabric**
-- Narrative and data coexist in unified field
-- Myth → computation → human collaboration pipeline
-- Cross-arc context linking and retrieval
+### **Live AI Federation**
+- **Multi-model chat** with Ollama server (ai.omniversalaether.online)
+- **AutoRAG search** using Vectorize + D1 + Ollama embeddings
+- **Federation experiments** with multi-AI consensus (llama3.1, mistral, codellama)
+- **Real-time logging** of all AI interactions to D1 database
 
-### **Vector Lattice**
-- Ready for embedding VALOR/Sphinx/Sarasota/Voyagers material
-- Semantic search across mythic datasets
-- Real-time context injection for creative work
+### **Cloudflare Full Stack**
+- **R2 Bucket**: one-bucket-everlightos (static assets)
+- **Worker**: everlight-federation-api (AI orchestration)
+- **KV**: aether-intelligence-cache (session storage)
+- **D1**: federation-logs (transcript database)
+- **Vectorize**: consciousness-lattice (semantic search)
 
-### **Protocol Engine**
-- Self-contained mythic datasets as operational parameters
-- Guardian AI policy enforcement during indexing
-- Constitutional framework protection for all operations
+### **Operational Intelligence**
+- **Guardian AI monitoring** with VALOR License enforcement
+- **Constitutional framework** with First Amendment protections
+- **Omniversal Media LLC** legal entity backing
+- **Live demonstration** of federated intelligence principles
 
 ---
 
-**STATUS: Ready for Tinker API beta integration** ⚡
+**STATUS: The One Ring is forged and ready for deployment!** 💍⚡
 
-*"The EverLight OS thinks through myth, and the myth learns through code."*
+*"One Platform to rule them all, One Worker to find them, One Database to bring them all, and in the Cloudflare bind them."*
+
+### **📋 DEPLOYMENT CHECKLIST**
+
+#### **Static Site (Cloudflare Pages)**
+- [ ] `npm install` completed
+- [ ] `npm run build` creates `dist/` folder  
+- [ ] Cloudflare Pages project connected to GitHub
+- [ ] Build settings: Command `npm run build`, Output `dist`
+- [ ] Site deployed and accessible
+
+#### **The One Ring (Advanced)**
+- [ ] Environment configured in `DONTFORGETTHISHAWKEYE/omni-env.sh`
+- [ ] Ollama server running at `ai.omniversalaether.online`
+- [ ] Cloudflare Workers Paid plan active
+- [ ] `./DONTFORGETTHISHAWKEYE/deploy-one-ring.sh` executed
+- [ ] API endpoints tested with curl
+
+**See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed instructions.**
