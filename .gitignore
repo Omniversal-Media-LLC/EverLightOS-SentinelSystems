@@ -11,6 +11,9 @@ dist/
 .env.production
 DONTFORGETTHISHAWKEYE/
 
+# Wrangler local state
+.wrangler/
+
 # macOS
 .DS_Store
 

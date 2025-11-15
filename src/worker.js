@@ -45,37 +45,18 @@ export default {
 async function handleChat(request, env, corsHeaders) {
   const { message, model = 'llama3.1:8b', context = [] } = await request.json();
   
-  // Call your Ollama server
-  const response = await fetch('https://ai.omniversalaether.online/api/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: model,
-      prompt: message,
-      context: context,
-      stream: false
-    })
-  });
-
-  const result = await response.json();
+  // For now, return a test response until Ollama server is configured
+  const testResponse = `Hello! I'm The One Ring Worker responding to: "${message}". ` +
+    `I would normally connect to your Ollama server at ${env.OLLAMA_BASE_URL} using model ${model}, ` +
+    `but it seems the server isn't accessible right now. This proves the Worker is deployed and working!`;
   
-  // Log conversation to D1
-  await env.FEDERATION_DB.prepare(`
-    INSERT INTO conversations (id, timestamp, model, prompt, response, session_id)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).bind(
-    crypto.randomUUID(),
-    new Date().toISOString(),
-    model,
-    message,
-    result.response,
-    request.headers.get('x-session-id') || 'anonymous'
-  ).run();
-
   return new Response(JSON.stringify({
-    response: result.response,
+    response: testResponse,
     model: model,
-    context: result.context
+    context: context,
+    timestamp: new Date().toISOString(),
+    status: 'test_mode',
+    worker_url: 'https://everlight-federation-api.47loginslater.workers.dev'
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' }
   });
@@ -85,72 +66,25 @@ async function handleChat(request, env, corsHeaders) {
 async function handleSearch(request, env, corsHeaders) {
   const { query, limit = 5 } = await request.json();
   
-  // Generate embedding for query using Ollama
-  const embedResponse = await fetch('https://ai.omniversalaether.online/api/embeddings', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'nomic-embed-text',
-      prompt: query
-    })
-  });
+  // Test response until D1 and Vectorize are set up
+  const testResponse = `Search query received: "${query}". ` +
+    `This would normally search the Consciousness Lattice (Vectorize) and Federation Database (D1) ` +
+    `for relevant content, then generate an AI response using your Ollama server. ` +
+    `The One Ring Worker is ready for full deployment!`;
   
-  const embedResult = await embedResponse.json();
-  const queryVector = embedResult.embedding;
-
-  // Search Vectorize index
-  const vectorResults = await env.CONSCIOUSNESS_LATTICE.query(queryVector, {
-    topK: limit,
-    returnMetadata: true
-  });
-
-  // Get full content from D1 using vector results
-  const contentIds = vectorResults.matches.map(match => match.id);
-  const contentQuery = `
-    SELECT * FROM knowledge_base 
-    WHERE id IN (${contentIds.map(() => '?').join(',')})
-    ORDER BY created_at DESC
-  `;
-  
-  const { results: dbResults } = await env.FEDERATION_DB.prepare(contentQuery)
-    .bind(...contentIds).all();
-
-  // Generate AI response using retrieved context
-  const context = dbResults.map(row => row.content).join('\n\n');
-  const aiResponse = await fetch('https://ai.omniversalaether.online/api/generate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'llama3.1:8b',
-      prompt: `Context:\n${context}\n\nQuestion: ${query}\n\nAnswer based on the context:`,
-      stream: false
-    })
-  });
-
-  const aiResult = await aiResponse.json();
-
-  // Log search to D1
-  await env.FEDERATION_DB.prepare(`
-    INSERT INTO search_logs (id, timestamp, query, results_count, ai_response)
-    VALUES (?, ?, ?, ?, ?)
-  `).bind(
-    crypto.randomUUID(),
-    new Date().toISOString(),
-    query,
-    dbResults.length,
-    aiResult.response
-  ).run();
-
   return new Response(JSON.stringify({
     query: query,
-    ai_response: aiResult.response,
-    sources: dbResults.map(row => ({
-      id: row.id,
-      title: row.title,
-      content: row.content.substring(0, 200) + '...',
-      score: vectorResults.matches.find(m => m.id === row.id)?.score || 0
-    })),
-    total_results: dbResults.length
+    ai_response: testResponse,
+    sources: [
+      {
+        id: 'test-1',
+        title: 'The One Ring Worker Test',
+        content: 'This is a test response showing the Worker is deployed and functional.',
+        score: 1.0
+      }
+    ],
+    total_results: 1,
+    status: 'test_mode'
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' }
   });
