@@ -14,6 +14,10 @@ DONTFORGETTHISHAWKEYE/
 # Wrangler local state
 .wrangler/
 
+# Credentials and secrets
+voyagers_bucket.ipynb
+Energetic-Synthesis/voyagers_bucket.ipynb
+
 # macOS
 .DS_Store
 
@@ -50,3 +54,4 @@ jspm_packages/
 
 # Yarn Integrity file
 .yarn-integrity
+/Energetic-Synthesis/voyagers_bucket.ipynb

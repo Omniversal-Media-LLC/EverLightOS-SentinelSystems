@@ -206,7 +206,8 @@ async function handleFederation(request, env, corsHeaders) {
 async function handleVoyagersIngestion(request, env, corsHeaders) {
   try {
     const body = await request.json();
-    const folder_path = body.folder_path || 'voyagers_1';
+    const folder_path = body.folder_path || 'voyagers-chunks';
+    const max_files = body.max_files || 10;
     
     // List objects in our R2 bucket
     const objects = await env.EVERLIGHT_BUCKET.list({ prefix: `${folder_path}/` });
@@ -214,40 +215,77 @@ async function handleVoyagersIngestion(request, env, corsHeaders) {
     if (objects.objects.length === 0) {
       return new Response(JSON.stringify({
         success: false,
-        message: `No files found in ${folder_path}/ folder`
+        message: `No files found in ${folder_path}/ folder`,
+        note: 'Upload parsed PDF chunks to voyagers-chunks/ folder first'
       }), {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
 
-    // Process just the first file as a test
-    const firstFile = objects.objects[0];
-    const file = await env.EVERLIGHT_BUCKET.get(firstFile.key);
-    const content = await file.text();
-    const title = firstFile.key.split('/').pop().replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ');
-    
-    const id = crypto.randomUUID();
-    
-    // Store in D1 using the same pattern as the working ingest function
-    const result = await env.FEDERATION_DB.prepare(`
-      INSERT INTO knowledge_base (id, title, content, source, tags, created_at)
-      VALUES (?, ?, ?, ?, ?, ?)
-    `).bind(
-      id,
-      `Voyagers: ${title}`,
-      content.substring(0, 5000), // Limit content size for testing
-      `r2://one-bucket-everlightos/${firstFile.key}`,
-      JSON.stringify(['voyagers', folder_path, 'foundational']),
-      new Date().toISOString()
-    ).run();
+    const results = {
+      processed: 0,
+      failed: 0,
+      files: []
+    };
+
+    // Process multiple files
+    for (const obj of objects.objects.slice(0, max_files)) {
+      try {
+        const file = await env.EVERLIGHT_BUCKET.get(obj.key);
+        if (!file) continue;
+        
+        const content = await file.text();
+        const filename = obj.key.split('/').pop();
+        const title = filename.replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ');
+        
+        const id = crypto.randomUUID();
+        
+        // Store in D1
+        await env.FEDERATION_DB.prepare(`
+          INSERT INTO knowledge_base (id, title, content, source, tags, created_at)
+          VALUES (?, ?, ?, ?, ?, ?)
+        `).bind(
+          id,
+          `Voyagers: ${title}`,
+          content,
+          `r2://one-bucket-everlightos/${obj.key}`,
+          JSON.stringify(['voyagers', 'chunks', 'foundational']),
+          new Date().toISOString()
+        ).run();
+
+        // Mock vector for Vectorize
+        const mockVector = Array.from({length: 1536}, () => Math.random() - 0.5);
+        
+        await env.CONSCIOUSNESS_LATTICE.upsert([{
+          id: id,
+          values: mockVector,
+          metadata: {
+            title: `Voyagers: ${title}`,
+            source: `r2://one-bucket-everlightos/${obj.key}`,
+            chunk_type: 'pdf_parsed',
+            tags: ['voyagers', 'chunks', 'foundational']
+          }
+        }]);
+
+        results.processed++;
+        results.files.push({
+          id: id,
+          title: `Voyagers: ${title}`,
+          source: obj.key,
+          size: obj.size
+        });
+        
+      } catch (error) {
+        results.failed++;
+      }
+    }
 
     return new Response(JSON.stringify({
       success: true,
-      message: `Voyagers test ingestion completed`,
-      file_processed: firstFile.key,
-      content_length: content.length,
-      db_result: result,
-      total_files_available: objects.objects.length
+      message: `Voyagers chunks ingestion completed`,
+      folder_path: folder_path,
+      total_files_found: objects.objects.length,
+      results: results
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
@@ -255,8 +293,7 @@ async function handleVoyagersIngestion(request, env, corsHeaders) {
   } catch (error) {
     return new Response(JSON.stringify({
       success: false,
-      error: error.message,
-      stack: error.stack
+      error: error.message
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

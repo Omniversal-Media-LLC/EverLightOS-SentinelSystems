@@ -29,3 +29,8 @@ bucket_name = "one-bucket-everlightos"
 ENVIRONMENT = "production"
 API_VERSION = "v1"
 OLLAMA_BASE_URL = "https://ai.omniversalaether.online"
+R2_ENDPOINT = "https://2fb52a67d12e6d214c516ace666abd61.r2.cloudflarestorage.com"
+
+# Secrets (set via wrangler secret put)
+# R2_ACCESS_KEY_ID
+# R2_SECRET_ACCESS_KEY
