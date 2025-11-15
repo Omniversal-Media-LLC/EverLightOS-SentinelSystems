@@ -27,6 +27,10 @@ export default {
         return await handleIngest(request, env, corsHeaders);
       } else if (path.startsWith('/api/federation')) {
         return await handleFederation(request, env, corsHeaders);
+      } else if (path.startsWith('/api/ingest-voyagers')) {
+        return await handleVoyagersIngestion(request, env, corsHeaders);
+      } else if (path.startsWith('/api/list-bucket')) {
+        return await handleListBucket(request, env, corsHeaders);
       } else {
         return new Response('EverLightOS Federation API - The One Ring Worker', {
           headers: { ...corsHeaders, 'Content-Type': 'text/plain' }
@@ -94,18 +98,8 @@ async function handleSearch(request, env, corsHeaders) {
 async function handleIngest(request, env, corsHeaders) {
   const { title, content, source, tags = [] } = await request.json();
   
-  // Generate embedding using Ollama
-  const embedResponse = await fetch('https://ai.omniversalaether.online/api/embeddings', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: 'nomic-embed-text',
-      prompt: content
-    })
-  });
-  
-  const embedResult = await embedResponse.json();
-  const contentVector = embedResult.embedding;
+  // For now, use mock embeddings until Ollama is configured
+  const mockVector = Array.from({length: 1536}, () => Math.random() - 0.5);
   
   const id = crypto.randomUUID();
   
@@ -125,7 +119,7 @@ async function handleIngest(request, env, corsHeaders) {
   // Store vector in Vectorize
   await env.CONSCIOUSNESS_LATTICE.upsert([{
     id: id,
-    values: contentVector,
+    values: mockVector,
     metadata: {
       title: title,
       source: source,
@@ -136,7 +130,8 @@ async function handleIngest(request, env, corsHeaders) {
   return new Response(JSON.stringify({
     success: true,
     id: id,
-    message: 'Content ingested into The One Ring'
+    message: 'Content ingested into The One Ring',
+    note: 'Using mock embeddings until Ollama server is configured'
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' }
   });
@@ -205,4 +200,98 @@ async function handleFederation(request, env, corsHeaders) {
   }), {
     headers: { ...corsHeaders, 'Content-Type': 'application/json' }
   });
+}
+
+// 🌌 VOYAGERS KNOWLEDGE BASE INGESTION
+async function handleVoyagersIngestion(request, env, corsHeaders) {
+  try {
+    const body = await request.json();
+    const folder_path = body.folder_path || 'voyagers_1';
+    
+    // List objects in our R2 bucket
+    const objects = await env.EVERLIGHT_BUCKET.list({ prefix: `${folder_path}/` });
+    
+    if (objects.objects.length === 0) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: `No files found in ${folder_path}/ folder`
+      }), {
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    // Process just the first file as a test
+    const firstFile = objects.objects[0];
+    const file = await env.EVERLIGHT_BUCKET.get(firstFile.key);
+    const content = await file.text();
+    const title = firstFile.key.split('/').pop().replace(/\.[^/.]+$/, '').replace(/[_-]/g, ' ');
+    
+    const id = crypto.randomUUID();
+    
+    // Store in D1 using the same pattern as the working ingest function
+    const result = await env.FEDERATION_DB.prepare(`
+      INSERT INTO knowledge_base (id, title, content, source, tags, created_at)
+      VALUES (?, ?, ?, ?, ?, ?)
+    `).bind(
+      id,
+      `Voyagers: ${title}`,
+      content.substring(0, 5000), // Limit content size for testing
+      `r2://one-bucket-everlightos/${firstFile.key}`,
+      JSON.stringify(['voyagers', folder_path, 'foundational']),
+      new Date().toISOString()
+    ).run();
+
+    return new Response(JSON.stringify({
+      success: true,
+      message: `Voyagers test ingestion completed`,
+      file_processed: firstFile.key,
+      content_length: content.length,
+      db_result: result,
+      total_files_available: objects.objects.length
+    }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+    
+  } catch (error) {
+    return new Response(JSON.stringify({
+      success: false,
+      error: error.message,
+      stack: error.stack
+    }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+// 📁 LIST R2 BUCKET CONTENTS
+async function handleListBucket(request, env, corsHeaders) {
+  try {
+    const url = new URL(request.url);
+    const prefix = url.searchParams.get('prefix') || '';
+    
+    const objects = await env.EVERLIGHT_BUCKET.list({ prefix: prefix });
+    
+    return new Response(JSON.stringify({
+      success: true,
+      prefix: prefix,
+      total_objects: objects.objects.length,
+      objects: objects.objects.map(obj => ({
+        key: obj.key,
+        size: obj.size,
+        uploaded: obj.uploaded
+      }))
+    }), {
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+    
+  } catch (error) {
+    return new Response(JSON.stringify({
+      success: false,
+      error: error.message
+    }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
 }
