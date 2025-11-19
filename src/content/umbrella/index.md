@@ -33,7 +33,7 @@ The Omniversal Media Umbrella provides comprehensive infrastructure for creative
 - Constitutional framework compliance
 
 ### Sentinel Framework Connection
-[Sentinel-Systems Repository](https://github.com/ethanrosswomack/sentinel-systems) - Live documentation and guardian policies
+[Sentinel-Systems Repository](https://github.com/Omniversal-Media-LLC/sentinel-systems) - Live documentation and guardian policies
 
 ---
 
